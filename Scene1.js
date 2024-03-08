@@ -23,8 +23,6 @@ class Scene1 extends Phaser.Scene {
     });
   }
 
-  this.load.spriteSheet{"ship", "C:\Users\Shane\Downloads\spritesheets\spritesheets\ship.png"}
-
   create() {
     this.add.text(20, 20, "Loading game...");
   }
