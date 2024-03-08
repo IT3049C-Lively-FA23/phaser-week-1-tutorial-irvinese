@@ -14,8 +14,5 @@ var config = {
 
 var game = new Phaser.Game(config);
 
-window.onload = function()
-{
-  var game = new Phaser.Game(config);
-}
+
 

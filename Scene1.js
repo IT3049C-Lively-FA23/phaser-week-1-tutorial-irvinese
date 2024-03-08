@@ -4,6 +4,7 @@ class Scene1 extends Phaser.Scene {
   }
 
   preload() {
+    this.load.image("background", "C:/Users/Shane/Downloads/Phaser_Assets/background.png")
     // Use forward slashes in file paths
     this.load.spriteSheet("ship", "C:/Users/Shane/Downloads/spritesheets/spritesheets/ship.png", {
       frameWidth: 16,
@@ -29,5 +30,6 @@ class Scene1 extends Phaser.Scene {
 
   create() {
     this.add.text(20, 20, "Loading game...");
+    this.Scene.start("playGame");
   }
 }
