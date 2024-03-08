@@ -29,7 +29,11 @@ class Scene1 extends Phaser.Scene {
     this.load.spriteSheet("player", "C:/Users/Shane/Downloads/part 8 - Custom Classes files/part 8 - Custom Classes/assets/spritesheets/player.png",{
       frameWidth: 16,
       frameHeight: 24
-    })
+    });
+    this.load.spriteSheet("beam", "C:/Users/Shane/Downloads/part 8 - Custom Classes files/part 8 - Custom Classes/assets/spritesheets/beam.png",{
+      frameWidth: 16,
+      frameHeight: 16
+    });
   }
 
   create() {
@@ -79,7 +83,7 @@ class Scene1 extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers("player"),
       frameRate: 20,
       repeat: -1
-    })
+    });
 
     this.anims.create({
       key: "gray",
@@ -87,6 +91,13 @@ class Scene1 extends Phaser.Scene {
         start:2,
         end: 3
       }),
+      frameRate: 20,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: "beam_anim",
+      frames: this.anims.generateFrameNumbers("beam"),
       frameRate: 20,
       repeat: -1
     });

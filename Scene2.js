@@ -45,6 +45,7 @@ class Scene2 extends Phaser.Scene {
     this.cursorKeys = this.inpiut.keyboard.createCursorKeys();
     this.player.setColliderWorldBounds(true);
     this.spacebar = this.inpiut.keyboard.addKey(Phaser.Input.keyboard.KeyCodes.SPACE);
+    this.projectiles = this.add.group();
   }
 
   moveShip(ship, speed) {
@@ -70,7 +71,11 @@ class Scene2 extends Phaser.Scene {
     this.movePlayerManager();
 
     if(Phaser.Input.keyboard.justDown(this.spacebar)){
-      console.log("fire");
+      this.shootBeam();
+    }
+    for(var i = 0; i < this.projectiles.getChildren().length; i++){
+      var beam = this.projectiles.getChildren()[i];
+      beam.update();
     }
   }
 
@@ -92,5 +97,9 @@ class Scene2 extends Phaser.Scene {
   destroyShip(pointer, gameObject) {
     gameObject.setTexture("explosion");
     gameObject.play("explode");
+  }
+
+  shootBeam(){
+    var beam = new Beam(this);
   }
 }
