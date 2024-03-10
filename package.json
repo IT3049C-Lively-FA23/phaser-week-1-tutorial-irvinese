@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "typescript": "^5.4.2"
+  },
+  "dependencies": {
+    "phaser": "^3.80.1"
   }
 }
