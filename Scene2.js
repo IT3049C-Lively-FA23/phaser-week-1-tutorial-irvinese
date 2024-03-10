@@ -105,7 +105,9 @@ class Scene2 extends Phaser.Scene {
     this.movePlayerManager();
 
     if(Phaser.Input.keyboard.justDown(this.spacebar)){
+      if(this.player.active){
       this.shootBeam();
+      }
     }
     for(var i = 0; i < this.projectiles.getChildren().length; i++){
       var beam = this.projectiles.getChildren()[i];
@@ -139,11 +141,25 @@ class Scene2 extends Phaser.Scene {
 
   hurtPlayer(player, enemy){
     this.resetShipPos(enemy);
-    player.x = config.width / 2 - 8;
-    player.y = config.height - 64;
+    if(this.player.alpha < 1){
+      return;
+    }
+    var explosion = new Explosion(this, player.x, player.y);
+    player.disableBody(true, true);
+    this.restPlayer();
+
+    this.time.addEvent({
+      delay: 1000,
+      callback: this.restPlayer,
+      callbackScope: this,
+      loop: false
+    });
   }
 
   hitEnemy(projectiles, enemy){
+
+    var explosion = new explosion(this, enemy.x, enemy.y);
+
     projectiles.destroy();
     this.resetShipPos(enemy);
     this.score += 15;
@@ -157,5 +173,24 @@ class Scene2 extends Phaser.Scene {
       stringNumber = "0" + stringNumber;
     }
     return stringNumber;
+  }
+
+  restPlayer(){
+    var x = config.width / 2 - 8;
+    var y = config.height + 64;
+    this.player.enableBody(true, x, y, true, true);
+    this. player.alpha = 0.5;
+
+    var tween = this.tweens.add({
+      targets: this.player,
+      y: config.height - 64,
+      ease: 'power1',
+      duration: 1500,
+      repeat: 0,
+      onComplete: function(){
+        this.player.alpha = 1;
+      },
+      callback: this
+    });
   }
 }
