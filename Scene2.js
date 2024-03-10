@@ -13,6 +13,11 @@ class Scene2 extends Phaser.Scene {
     this.ship2 = this.add.sprite(config.width / 2, config.height / 2, "ship2");
     this.ship3 = this.add.sprite(config.width / 2 + 50, config.height / 2, "ship3");
 
+    this.enemies = this.physics.add.group();
+    this.enemies.add(this.ship);
+    this.enemies.add(this.ship1);
+    this.enemies.add(this.ship3);
+
     this.powerUps = this.physics.add.group();
 
     var maxObjects = 4;
@@ -46,6 +51,20 @@ class Scene2 extends Phaser.Scene {
     this.player.setColliderWorldBounds(true);
     this.spacebar = this.inpiut.keyboard.addKey(Phaser.Input.keyboard.KeyCodes.SPACE);
     this.projectiles = this.add.group();
+
+    this.physics.add.collider(this.projectiles, this.powerUps, function(projectiles, powerUp){
+      projectiles.destroy();
+    });
+
+    this.physics.add.overlap(this.player, this. powerUps, this.pickPowerUp, null, this);
+
+    this.physics.add.overlap(this.player, this.enemies, this.hurtPlayer, null, this);
+
+    this.physics.add.overlap(this.projectiles, this.enemies, this.hitEnemy, null, this);
+  }
+
+  pickPowerUp(player, powerUp){
+    powerUp.disableBody(true, true);
   }
 
   moveShip(ship, speed) {
@@ -101,5 +120,16 @@ class Scene2 extends Phaser.Scene {
 
   shootBeam(){
     var beam = new Beam(this);
+  }
+
+  hurtPlayer(player, enemy){
+    this.resetShipPos(enemy);
+    player.x = config.width / 2 - 8;
+    player.y = config.height - 64;
+  }
+
+  hitEnemy(projectiles, enemy){
+    projectiles.destroy();
+    this.resetShipPos(enemy);
   }
 }
