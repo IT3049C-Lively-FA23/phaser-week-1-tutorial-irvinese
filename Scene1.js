@@ -36,6 +36,11 @@ class Scene1 extends Phaser.Scene {
     });
 
     this.load.bitmapFont("pixelFont","C:/Users/Shane/Downloads/part 10 - Score Label files/part 10 - Score Label/assets/font/font.png", "C:/Users/Shane/Documents/GitHub/New folder/Chatting-part2-irvinese/phaser-week-1-tutorial-irvinese/font.xml")
+
+    this.load.audio("audio_beam", "C:/Users/Shane/Downloads/part 12 - Audio files/part 12 - Audio/assets/sounds/beam.mp3")
+    this.load.audio("audio_explosion", "C:/Users/Shane/Downloads/part 12 - Audio files/part 12 - Audio/assets/sounds/explosion.mp3")
+    this.load.audio("audio_pickup", "C:/Users/Shane/Downloads/part 12 - Audio files/part 12 - Audio/assets/sounds/pickup.mp3")
+    this.load.audio("music", "C:/Users/Shane/Downloads/Family Guy - Bird is the Word - www.youtube.com_(www.KeepVid.to).mp3")
   }
 
   create() {
