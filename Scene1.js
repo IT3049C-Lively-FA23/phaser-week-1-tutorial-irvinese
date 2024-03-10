@@ -34,6 +34,8 @@ class Scene1 extends Phaser.Scene {
       frameWidth: 16,
       frameHeight: 16
     });
+
+    this.load.bitmapFont("pixelFont","C:/Users/Shane/Downloads/part 10 - Score Label files/part 10 - Score Label/assets/font/font.png", "C:/Users/Shane/Documents/GitHub/New folder/Chatting-part2-irvinese/phaser-week-1-tutorial-irvinese/font.xml")
   }
 
   create() {
